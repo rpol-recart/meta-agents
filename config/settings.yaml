@@ -1,0 +1,50 @@
+# DeepAgent Orchestrator Configuration
+
+# LLM Model
+model:
+  provider: "openAI compartible"
+  name: "openai/gpt-oss-120b"
+  base_url: "https://foundation-models.api.cloud.ru/v1"
+  api_key: "${OPENAI_API_KEY}"
+  temperature: 0.1
+  max_tokens: 4096
+
+# Backend Configuration
+backend:
+  type: "composite"
+  config:
+    root_dir: "/tmp/agent-workspace"
+    store_namespace: "memories"
+
+# Sub-agents
+subagents:
+  directory: "agents/"
+  auto_load: true
+  hot_reload: true
+
+# Human-in-the-Loop
+hitl:
+  enabled: true
+  tools:
+    run_command:
+      allowed_decisions:
+        - approve
+        - edit
+        - reject
+    delete_file:
+      allowed_decisions:
+        - approve
+        - reject
+
+# API Server
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+  cors_origins:
+    - "*"
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
