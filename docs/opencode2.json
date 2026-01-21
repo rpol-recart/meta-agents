@@ -1,0 +1,17 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "MiniMaxAI/MiniMax-M2",
+  "provider": {
+    "clru": {
+      "models": {
+        "MiniMax-M2": {
+          "id": "MiniMaxAI/MiniMax-M2"
+        }
+      },
+      "options": {
+        "apiKey": "MjM0ZjNkMjQtMjQzYi00ZDYxLWI1MDItNjRkYWQ2YmI0ZmYx.825ead749489b507c482c45c206a8036",
+        "baseURL": "https://foundation-models.api.cloud.ru/v1"
+      }
+    }
+  }
+}
