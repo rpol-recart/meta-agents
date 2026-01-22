@@ -1,0 +1,70 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "MiniMaxAI/MiniMax-M2",
+  "provider": {
+    "clru": {
+      "models": {
+        "MiniMax-M2": {
+          "id": "MiniMaxAI/MiniMax-M2"
+        },
+        "gpt-oss120": {
+          "id": "openai/gpt-oss-120b"
+        },
+        "Qwen3-Coder": {
+          "id": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        }
+      },
+      "options": {
+        "apiKey": "MjY",
+        "baseURL": "https://foundation-models.api.cloud.ru/v1"
+      }
+    }
+  },
+  "agent": {
+    "coder": {
+      "description": "Primary coding agent using Qwen3-Coder",
+      "mode": "primary",
+      "model": "clru/Qwen3-Coder",
+      "temperature": 0.2,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "researcher": {
+      "description": "Research agent using openai/gpt-oss-120b for make ideas, and make web search",
+      "mode": "subagent",
+      "model": "clru/gpt-oss120",
+      "temperature": 0.8,
+      "tools": {
+        "read":true,
+        "write": true,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "debugger": {
+      "description": "Debug and testing agent using MiniMax-M2",
+      "mode": "subagent",
+      "model": "clru/MiniMax-M2",
+      "temperature": 0.3,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "summarizator": {
+      "description": "Summarize context when it too big for can not exceed context windows using MiniMax-M2",
+      "mode": "subagent",
+      "model": "clru/MiniMax-M2",
+      "temperature": 0.3,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    }
+  }
+}
